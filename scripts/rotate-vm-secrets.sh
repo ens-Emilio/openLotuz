@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# rotate-vm-secrets — rode DENTRO da VM ShardCloud (console / SSH)
-# Troca: senha CRM (Supabase GoTrue), senha Cronova, e recria o Cloudflare Tunnel
-# Uso: sudo bash scripts/rotate-vm-secrets.sh  (ou copie para /tmp e execute)
-# Requisitos: docker, cloudflared logado (cloudflared tunnel login), ou CFTOK exportado
+# Rotate CRM, workflow, and Tunnel credentials on the target VM.
+# Run on the VM as root; never copy resulting values into Git.
+# Requires Docker and cloudflared on the target host.
 set -euo pipefail
 
 echo "== 1) Gerando novas senhas =="

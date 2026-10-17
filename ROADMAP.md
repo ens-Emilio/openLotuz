@@ -44,8 +44,8 @@ graph LR
 - [x] Skill read-only `lotuz-reports` + validação no SDK
 
 Remaining external activation:
-- [ ] Cloudflare Access para rotas públicas protegidas
-- [ ] Telegram token e teste privado do gateway
+- [ ] Enable the account's protected-access product and configure policies for admin routes
+- [ ] Configure a private Telegram bot token and user allowlist
 
 ---
 

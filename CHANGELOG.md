@@ -33,9 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Security**: Robust `.gitignore` preventing secrets leakage; GitHub Actions workflow for secrets scanning
 
 ### Infrastructure
-- VM: ShardCloud Core + add-on RAM
-- Zero extra cost beyond existing VM
-- All services healthy: containers + public endpoints via Tunnel
+- Self-hosted services behind a Cloudflare Tunnel
+- Encrypted offsite backups and documented restore drills
 
 ### Security Notes
 - All secrets in `.env` files (ignored by git)
@@ -58,9 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fase 1/Fase 2/Fase 3 status documented in `ROADMAP.md`
 
 ### Security
-- Cloudflare Access enabled for Kuma, Studio, Hermes and webhook hostnames with administrator-only policy.
-- Supabase origins remain loopback-only; Telegram token is stored only on the VPS.
-- Revoked infrastructure credentials must never be committed; rotate Telegram tokens exposed outside the VM immediately.
+- Admin surfaces use loopback origins and can be protected with Cloudflare Access.
+- Credentials and tokens stay outside the repository; rotate any credential that appears in a public or shared location.
 
 ## [Unreleased]
 

@@ -15,14 +15,15 @@ Keep `127.0.0.1:9119`. Configure the protected Hermes hostname through Cloudflar
 
 ## Telegram
 
-The Telegram bot is configured on the VPS and Hermes is connected in polling mode. The token is intentionally absent from this repository. To rotate it, use BotFather `/revoke`, write the replacement only to `/root/.hermes/.env`, mode `0600`, then restart the user gateway.
+Use a token created through the official Telegram bot-management flow. Store it only in the runtime environment file with mode `0600`, then restart the gateway.
 
 ```bash
+chmod 600 /root/.hermes/.env
 hermes status
 systemctl --user restart hermes-gateway
 ```
 
-The bot API was verified with `getMe`. Use a private chat smoke test; do not share the token in issues, shell history, repository, or webhook payloads.
+Test with a private chat. Never publish the token in issues, shell history, repositories, screenshots, or webhook payloads. If a token appears in a shared location, revoke it at the provider and create a replacement.
 
 ## HMAC webhooks
 

@@ -5,13 +5,11 @@ import pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FAIL = False
 
-# 1) Blocked patterns that should never appear in tracked files
+# Block common credential formats without hardcoding incident-specific values.
 BLOCKED = [
-    (r"truuz\.com\.br", "real domain (use example.com)"),
-    (r"Lotuz[A-Za-z0-9]*2026", "hardcoded demo password"),
-    (r"6835eeba86060be88cfe0420de9764c9", "hardcoded Zone ID"),
-    (r"0651daf3546c9171d9e5924f6783b449", "hardcoded Account ID"),
-    (r"2d0f8516-485d-4111-b689-a6536ecb5a40", "hardcoded Tunnel ID"),
+    (r"-----BEGIN [A-Z ]+ PRIVATE KEY-----", "private key"),
+    (r"(?:AKIA|ghp_|github_pat_|sk_live_|sk_test_|xox[baprs]-)[A-Za-z0-9_-]{16,}", "known token format"),
+    (r"(?i)^(?:export\s+)?(?:password|secret|token|[A-Z_]*(?:KEY|TOKEN|PASSWORD|SECRET))\s*=\s*(?!$|<|SEU_|troque_|sua_|your_|change_|age1destinatario|\$|\{)[A-Za-z0-9+/=_-]{20,}$", "inline credential assignment"),
 ]
 
 # allow workflow itself to document blocked patterns
