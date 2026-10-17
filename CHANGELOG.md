@@ -58,10 +58,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fase 1/Fase 2/Fase 3 status documented in `ROADMAP.md`
 
 ### Security
+- Cloudflare Access enabled for Kuma, Studio, Hermes and webhook hostnames with administrator-only policy.
+- Supabase origins remain loopback-only; Telegram token is stored only on the VPS.
 - Revoked infrastructure credentials must never be committed; rotate Telegram tokens exposed outside the VM immediately.
 
 ## [Unreleased]
 
 ### Planned
-- Enable Cloudflare Access and publish protected admin routes
-- Configure a fresh Telegram bot token and private-chat smoke test
+- Add Telegram user allowlist after receiving the owner's numeric Telegram user ID.

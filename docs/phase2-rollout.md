@@ -11,20 +11,18 @@ systemctl --user enable --now hermes-dashboard
 curl -fsSI http://127.0.0.1:9119/
 ```
 
-Keep `127.0.0.1:9119`. Before a public hostname exists, enable Cloudflare Access and create an allow policy for the administrator identity. Then add `hermes.example.com` to the Tunnel ingress and test the Access login first.
+Keep `127.0.0.1:9119`. Configure the protected Hermes hostname through Cloudflare Access for the administrator identity before publishing it. The live hostname is intentionally omitted from this public documentation.
 
 ## Telegram
 
-**Rotacione imediatamente qualquer token colado em chat, issue, log ou terminal compartilhado.** No BotFather, use `/revoke` para o bot e gere um token novo. O token novo deve ser escrito somente em `/root/.hermes/.env`, modo `0600`.
+The Telegram bot is configured on the VPS and Hermes is connected in polling mode. The token is intentionally absent from this repository. To rotate it, use BotFather `/revoke`, write the replacement only to `/root/.hermes/.env`, mode `0600`, then restart the user gateway.
 
 ```bash
-printf '\nTELEGRAM_BOT_TOKEN=<private-token>\n' >> /root/.hermes/.env
-chmod 600 /root/.hermes/.env
-hermes gateway setup
+hermes status
 systemctl --user restart hermes-gateway
 ```
 
-Teste com uma conversa privada. Não publique Telegram ou compartilhe o token em issue, histórico do shell, repositório ou payload de webhook.
+The bot API was verified with `getMe`. Use a private chat smoke test; do not share the token in issues, shell history, repository, or webhook payloads.
 
 ## HMAC webhooks
 
