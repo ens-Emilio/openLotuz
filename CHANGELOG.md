@@ -44,12 +44,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cronova: `secure_cookie: true`
 - Supabase pooler: `VAULT_ENC_KEY` fixed to 32-char raw string
 
+## [0.2.0] - 2026-10-17
+
+### Added
+- Encrypted R2 backups with Age and weekly restore drill
+- Loopback-only Hermes dashboard and HMAC webhook routes
+- Host orchestration CLI, idempotent setup, versioned skills, reports skill
+- MkDocs documentation site and GitHub Pages workflow
+- External prerequisite checker and recovery/security runbooks
+
+### Changed
+- Supabase gateway and pooler ports bind to loopback
+- Fase 1/Fase 2/Fase 3 status documented in `ROADMAP.md`
+
+### Security
+- Revoked infrastructure credentials must never be committed; rotate Telegram tokens exposed outside the VM immediately.
+
 ## [Unreleased]
 
 ### Planned
-- Expose Hermes TUI via tunnel (`hermes.example.com`)
-- Add monitoring (Uptime Kuma / Healthchecks.io)
-- More skills: reports, sheets integration, webhook handlers
-- Telegram gateway (in addition to Discord)
-- Unit tests for skills
-- GitHub Pages for docs site
+- Enable Cloudflare Access and publish protected admin routes
+- Configure a fresh Telegram bot token and private-chat smoke test

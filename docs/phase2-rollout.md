@@ -15,7 +15,7 @@ Keep `127.0.0.1:9119`. Before a public hostname exists, enable Cloudflare Access
 
 ## Telegram
 
-Create a Telegram bot with BotFather and store the token only in `/root/.hermes/.env`:
+**Rotacione imediatamente qualquer token colado em chat, issue, log ou terminal compartilhado.** No BotFather, use `/revoke` para o bot e gere um token novo. O token novo deve ser escrito somente em `/root/.hermes/.env`, modo `0600`.
 
 ```bash
 printf '\nTELEGRAM_BOT_TOKEN=<private-token>\n' >> /root/.hermes/.env
@@ -24,7 +24,7 @@ hermes gateway setup
 systemctl --user restart hermes-gateway
 ```
 
-Test with a private chat. Do not publish Telegram or share the token in an issue, shell history, repository, or webhook payload.
+Teste com uma conversa privada. Não publique Telegram ou compartilhe o token em issue, histórico do shell, repositório ou payload de webhook.
 
 ## HMAC webhooks
 
