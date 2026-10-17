@@ -1,0 +1,13 @@
+# Merge into /root/.hermes/config.yaml. Keep listener ports loopback-only;
+# publish them through Cloudflare Access, not direct unauthenticated ingress.
+platforms:
+  webhook:
+    enabled: true
+    extra:
+      host: 127.0.0.1
+      port: 8644
+      secret: SET_A_RANDOM_GLOBAL_SECRET
+
+dashboard:
+  host: 127.0.0.1
+  port: 9119

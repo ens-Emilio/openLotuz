@@ -1,0 +1,5 @@
+[allowlist]
+description = "Public placeholder template contains variable names and non-secret placeholder values"
+paths = [
+  '''(^|/)\.env\.example$''',
+]

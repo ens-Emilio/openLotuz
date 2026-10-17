@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT=${LOTUZ_ROOT:-/opt/lotuz}
+usage() {
+  printf 'Usage: lotuz <up|down|ps|logs> [crm|flow|sdr|wa|mkt|all]\n'
+}
+
+if [[ $# -eq 0 || "$1" == "--help" || "$1" == "-h" ]]; then usage; exit 0; fi
+[[ $# -ge 1 ]] || { usage >&2; exit 2; }
+action=$1
+service=${2:-all}
+[[ "$action" == "status" ]] && action=ps
+case "$action" in up|down|ps|logs) ;; *) usage >&2; exit 2 ;; esac
+case "$service" in crm|flow|sdr|wa|mkt|all) ;; *) usage >&2; exit 2 ;; esac
+
+
+run_service() {
+  local name=$1 compose=$2
+  case "$name" in
+    flow)
+      case "$action" in
+        up) systemctl start cronova ;;
+        down) systemctl stop cronova ;;
+        ps) systemctl status cronova --no-pager ;;
+        logs) journalctl -u cronova -f ;;
+      esac
+      ;;
+    *)
+      case "$action" in
+        up) docker compose -f "$compose" up -d ;;
+        down) docker compose -f "$compose" stop ;;
+        ps) docker compose -f "$compose" ps ;;
+        logs) docker compose -f "$compose" logs -f --tail=100 ;;
+      esac
+      ;;
+  esac
+}
+
+case "$service" in
+  crm) run_service crm "$ROOT/crm/supabase/docker-compose.yml" ;;
+  flow) run_service flow "" ;;
+  sdr) run_service sdr "$ROOT/agentsdr/docker-compose.yml" ;;
+  wa) run_service wa "$ROOT/openwa/docker-compose.yml" ;;
+  mkt) run_service mkt "$ROOT/helio/docker-compose.yml" ;;
+  all)
+    for name in crm flow sdr wa mkt; do
+      case "$name" in
+        crm) compose="$ROOT/crm/supabase/docker-compose.yml" ;;
+        flow) compose="" ;;
+        sdr) compose="$ROOT/agentsdr/docker-compose.yml" ;;
+        wa) compose="$ROOT/openwa/docker-compose.yml" ;;
+        mkt) compose="$ROOT/helio/docker-compose.yml" ;;
+      esac
+      printf '\n== %s: %s ==\n' "$name" "$action"
+      run_service "$name" "$compose"
+    done
+    ;;
+esac

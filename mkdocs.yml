@@ -1,0 +1,34 @@
+site_name: OpenLotuz
+site_description: Self-hosted open source business operations stack
+site_url: https://ens-emilio.github.io/openLotuz/
+repo_url: https://github.com/ens-Emilio/openLotuz
+repo_name: ens-Emilio/openLotuz
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Visão geral: index.md
+  - Operação:
+      - Plataforma: platform.md
+      - Recuperação de desastre: disaster-recovery.md
+      - Deploy Tunnel: deploy-tunnel.md
+      - Deploy Supabase: deploy-supabase.md
+      - Backup R2: deploy-backup-r2.md
+      - Rollout Hermes e Telegram: phase2-rollout.md
+  - Contribuição: contributing.md
+  - Segurança: security.md
+  - Roadmap: roadmap.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables

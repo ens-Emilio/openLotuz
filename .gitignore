@@ -1,0 +1,172 @@
+# ======================
+#  Environment & Secrets
+# ======================
+.env
+.env.*
+!.env.example
+.backup.env
+*.env.local
+*.env.*.local
+
+# Cloud
+.*aws*
+.*gcp*
+.*azure*
+.*cloudflare*
+.*do*
+.*hetzner*
+.*linode*
+.*digitalocean*
+.*ovy*
+.*scaleway*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# GitHub Actions (DO NOT ignore workflows — they are code)
+!.github/
+!.github/workflows/
+!.github/workflows/secrets-check.yml
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node
+node_modules/
+dist/
+dist-*/
+.out/
+.cache/
+.tmp/
+.temp/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyw
+*.pyi
+*.cover
+*.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.cache
+.hypothesis/
+.pytest_cache/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Hermes Agent (do NOT version user data, skills, cache, models, memories, sessions)
+/.root/
+/root/.hermes/
+/root/.hermes/**/skills/
+/root/.hermes/**/sessions/
+/root/.hermes/**/memories/
+/root/.hermes/**/tools/
+/root/.hermes/**/installs/
+/root/.hermes/**/cache/
+/root/.hermes/**/logs/
+/root/.hermes/**/source-checks/
+/root/.hermes/hermes-agent/skills/lotuz/  # nossas skills versionadas: permitir
+!/root/.hermes/hermes-agent/skills/lotuz/
+
+# IDEs & OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+._*
+.AppleDouble
+.LSOverride
+
+# Misc
+.backup
+.backups
+backup/
+backups/
+/tmp/
+temp/
+temp/
+temp/
+scratch/
+scratch/
+*/backups/*
+*/.backup/*
+
+# Secrets patterns
+*secret*
+*keys*
+*credential*
+*token*
+*private*
+.id_rsa
+.id_dsa
+.id_ecdsa
+.id_ed25519
+.id_s3db
+
+# Misc binary / data
+*.sqlite
+*.sqlite3
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.webp
+*.pdf
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# Allow CI workflow despite *secret* pattern above
+!.github/workflows/secrets-check.yml
+!scripts/rotate-vm-secrets.sh
+!SECURITY.md
+!CONTRIBUTING.md
+!ROADMAP.md
