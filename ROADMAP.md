@@ -35,8 +35,7 @@ graph LR
 - [ ] `scripts/setup.sh --yes` idempotente (substitui `docs/deploy-*.md` manual)
 
 ## Fase 3 — Crescimento
-
-- [ ] Docs site `mkdocs` + GitHub Pages + diagrama + GIF demo (sem `truuz.com.br`)
+- [ ] Docs site `mkdocs` + GitHub Pages + diagrama + GIF demo (sem domínio real)
 - [ ] `good first issue` backlog
 - [ ] Marketplace de skills (`lotuz-reports` com sheets)
 

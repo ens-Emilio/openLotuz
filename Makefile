@@ -19,10 +19,13 @@ secrets:
 	else \
 		echo "gitleaks not installed — skipping (CI runs it). Install: https://github.com/gitleaks/gitleaks#installing"; \
 	fi
-	@echo "→ custom block (truuz / hardcoded IDs)"; \
-	if git grep -I -E 'truuz\.com\.br|Lotuz[A-Za-z0-9]+2026' -- ':!*.png' ':!*.jpg' 2>/dev/null | grep -v 'SEU_\|example\.com' | grep -q .; then \
-		echo "❌ Blocked pattern found"; exit 1; \
-	else echo "✅ custom block passed"; fi
+	@echo "→ custom block (hardcoded secrets; docs with SEU_/example.com allowed)"; \
+	if git grep -I -E '6835eeba86060be88cfe0420de9764c9|0651daf3546c9171d9e5924f6783b449' -- ':!Makefile' ':!.github/workflows/secrets-check.yml' ':!scripts/check-env.py' 2>/dev/null | grep -q .; then \
+		echo "❌ Hardcoded Cloudflare ID found"; exit 1; \
+	else echo "✅ custom block: no hardcoded IDs"; fi; \
+	if git grep -I -E 'Lotuz[A-Za-z0-9]+2026' -- ':!*.png' ':!*.jpg' ':!scripts/check-env.py' ':!.github/workflows/secrets-check.yml' 2>/dev/null | grep -q .; then \
+		echo "❌ Hardcoded demo password found"; exit 1; \
+	else echo "✅ custom block: no hardcoded demo passwords"; fi
 
 lint:
 	@if command -v shellcheck >/dev/null 2>&1; then \

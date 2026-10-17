@@ -15,7 +15,7 @@ BLOCKED = [
 ]
 
 # allow workflow itself to document blocked patterns
-ALLOW_IN = {"SECURITY.md", "secrets-check.yml", "check-env.py", "ROADMAP.md"}
+ALLOW_IN = {"SECURITY.md", "secrets-check.yml", "check-env.py", "ROADMAP.md", "Makefile"}
 
 # Also warn on likely real JWT-like tokens (long base64) — not fail, just warn
 WARN_HIGH_ENTROPY = re.compile(r"eyJ[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}")

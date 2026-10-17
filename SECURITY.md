@@ -11,7 +11,7 @@
 
 **Do not open a public issue for security reports.**
 
-Email: **security@truuz.com.br** (or open a [private security advisory](https://github.com/ens-Emilio/openLotuz/security/advisories/new)).
+Use GitHub's [private security advisory](https://github.com/ens-Emilio/openLotuz/security/advisories/new). Do not report vulnerabilities in public issues.
 
 Include:
 - description + impact
@@ -26,8 +26,8 @@ This repo must never contain real domains, tokens, or passwords.
 
 - Use `example.com` / `SEU_*` placeholders (see `.env.example`).
 - Real values live only on the VM: `/opt/lotuz/crm/supabase/.env`, `/root/.hermes/.env`, `/etc/cloudflared/creds.json` (all gitignored).
-- CI runs `gitleaks` + custom block for `*.truuz.com.br` / `Lotuz*` patterns. A leak fails the check.
-- If you accidentally committed a secret: **rotate it immediately** on the VM (`scripts/rotate-vm-secrets.sh`) — history rewriting alone is not enough.
+- CI runs `gitleaks` plus checks that reject real deployment domains, IDs, and passwords.
+- If you accidentally committed a secret: **rotate it immediately** on the affected service — history rewriting alone is not enough.
 
 ## Hardening checklist (VM)
 
