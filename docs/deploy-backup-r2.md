@@ -37,61 +37,64 @@ rclone config create r2 s3 \
 
 # Testar
 rclone lsd r2:
-```
+## 4. Criptografar backups e configurar alertas
 
-## 4. Script de backup
-
-`/opt/lotuz/backup-r2.sh` (já instalado na VM):
+Instale `age` na VM e gere uma chave:
 
 ```bash
-#!/usr/bin/env bash
-set -uo pipefail
-source /opt/lotuz/.backup.env
-DATE=$(date +%F_%H-%M)
-DEST="r2:${R2_BUCKET}/vm/${DATE}"
-LOG=/var/log/lotuz-backup.log
-mkdir -p /opt/lotuz/backups
-
-dump() {
-  docker exec "$1" pg_dump -U "$2" --clean --if-exists 2>/dev/null \
-    > "/opt/lotuz/backups/$3_$DATE.sql" \
-    && echo "ok $3" \
-    || echo "fail $3"
-}
-
-echo "[$DATE] dumping dbs" >> "$LOG"
-dump supabase-db postgres supabase
-dump pretium-postgres-1 pretium pretium
-dump helio-selfhost-postgres-1 helio helio
-
-tar -czf "/opt/lotuz/backups/configs_$DATE.tar.gz" \
-  /opt/lotuz/crm/supabase/.env \
-  /opt/lotuz/crm/atomic/.env.production \
-  /etc/nginx/sites-available/crm \
-  /etc/cronova/ \
-  2>/dev/null
-
-export HOME=/root
-rclone sync /opt/lotuz/backups/ "$DEST" --transfers 4 >> "$LOG" 2>&1 \
-  && echo "[$DATE] r2 sync ok" >> "$LOG" \
-  || echo "[$DATE] r2 sync FAIL" >> "$LOG"
-
-find /opt/lotuz/backups -type f -mtime +7 -delete
-echo "[$DATE] done" >> "$LOG"
+apt-get update && apt-get install -y age
+install -d -m 0700 /root/.config/age
+age-keygen -o /root/.config/age/lotuz-backup.txt
+chmod 600 /root/.config/age/lotuz-backup.txt
+age-keygen -y /root/.config/age/lotuz-backup.txt
 ```
 
-## 5. Variáveis de ambiente
+Guarde a identidade (`lotuz-backup.txt`) fora da VM e do R2, em um cofre. A chave pública exibida por `age-keygen -y` pode ser usada pelo job de backup. Sem a identidade privada, os arquivos criptografados são irrecuperáveis.
 
-`/opt/lotuz/.backup.env` (chmod 600):
+Adicione a `/opt/lotuz/.backup.env` (modo `0600`):
 
 ```bash
 R2_BUCKET=SEU_BUCKET
+BACKUP_AGE_PUBLIC_KEY=age1...
+BACKUP_AGE_IDENTITY=/root/.config/age/lotuz-backup.txt
+# opcional: UUID privado criado no Healthchecks.io
+HEALTHCHECK_URL=https://hc-ping.com/SEU_UUID
+# opcional: ping dedicado para alerta de backup antigo
+BACKUP_ALERT_URL=https://hc-ping.com/SEU_UUID_ALERTA
 ```
 
-## 6. Cron diário (03:00 UTC)
+Copie `scripts/backup-r2.sh` para `/opt/lotuz/backup-r2.sh` e dê permissão `0700`. O script falha fechado: se `age` ou a chave pública faltarem, nenhum backup é enviado sem criptografia.
+
+## 5. Script de backup
+
+## 6. Restore drill semanal
+
+Copie `scripts/restore-test.sh` para `/opt/lotuz/restore-test.sh` e rode primeiro manualmente:
 
 ```bash
-ln -sf /opt/lotuz/backup-r2.sh /etc/cron.daily/lotuz-backup
+chmod 0700 /opt/lotuz/restore-test.sh
+/opt/lotuz/restore-test.sh
+```
+
+Agende no domingo às 05:30 UTC, após o backup diário:
+
+```cron
+30 5 * * 0 root /opt/lotuz/restore-test.sh >> /var/log/lotuz-restore-test.log 2>&1
+```
+
+O teste baixa o dump mais recente, descriptografa, valida e restaura em Postgres temporário. Não altera bancos de produção.
+
+## 7. Retenção no R2 (Lifecycle)
+
+Dashboard R2 → Bucket `SEU_BUCKET` → Settings → Object Lifecycle Rules:
+- **Delete objects after 30 days**
+
+## 8. Testar manualmente
+
+```bash
+/opt/lotuz/backup-r2.sh
+/opt/lotuz/restore-test.sh
+rclone lsf "r2:SEU_BUCKET/vm/" --dirs-only
 ```
 
 ## 7. Retenção no R2 (Lifecycle)

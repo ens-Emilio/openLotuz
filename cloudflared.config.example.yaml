@@ -12,4 +12,7 @@ ingress:
     service: http://localhost:3003
   - hostname: crm.example.com
     service: http://localhost:3000
+  - hostname: kuma.example.com
+    service: http://127.0.0.1:3010
+    # Configure a Cloudflare Access application and allow policy before adding this route.
   - service: http_status:404

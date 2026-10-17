@@ -1,6 +1,6 @@
 # Roadmap
 
-> Status: `v0.1.0` público (Apache-2.0). Foco atual: **Fase 0 — Fundação**.
+> Status: `v0.1.0` público (Apache-2.0). Fase 0 concluída; Fase 1 em implementação.
 
 ```mermaid
 graph LR
@@ -18,13 +18,14 @@ graph LR
 - [x] `Makefile` + `scripts/check-env.py`
 - [ ] `gitleaks` pre-commit hook docs (opcional)
 
-## Fase 1 — Confiabilidade (próxima)
+## Fase 1 — Confiabilidade (em andamento)
 
-- [ ] `Uptime Kuma` atrás de Cloudflare Access (`kuma.example.com`)
-- [ ] Backup 2.0: `age` encryption + weekly `restore --dry-run` + alerta se `rclone lsd` vazio > 48h
-- [ ] Hardening: `cronova secure_cookie: true`, `Studio`/`Cronova` via Access, `UFW` audit
-- [ ] `docs/disaster-recovery.md` — R2 → VM limpa < 30min (testado)
-- [ ] Healthchecks.io ping no fim do `backup-r2.sh`
+- [ ] `Uptime Kuma` atrás de Cloudflare Access (`kuma.example.com`) — container loopback ativo; Access/ingress pendentes
+- [x] Backup 2.0: `age` encryption obrigatório + Healthchecks.io opcional + alerta de backup > 48h
+- [x] Cronova `secure_cookie: true`
+- [ ] Supabase Studio/Cronova via Cloudflare Access; Docker-aware firewall for ports `8000`, `5432`, `6543`
+- [x] `scripts/restore-test.sh` instalado e agendado semanalmente; restore smoke passou em banco Supabase temporário
+- [x] `docs/disaster-recovery.md` com runbook de backup, restore e rollout
 
 ## Fase 2 — Plataforma
 

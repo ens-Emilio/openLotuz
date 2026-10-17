@@ -1,4 +1,4 @@
-.PHONY: help check lint secrets env-check
+.PHONY: help check lint secrets env-check backup-test
 
 help:
 	@echo "OpenLotuz"
@@ -11,6 +11,10 @@ check: env-check secrets
 
 env-check:
 	@python3 scripts/check-env.py
+
+backup-test:
+	@bash -n scripts/backup-r2.sh scripts/restore-test.sh
+	@echo "backup scripts syntax OK; restore-test requires VM R2 and age credentials to exercise"
 
 secrets:
 	@if command -v gitleaks >/dev/null 2>&1; then \
