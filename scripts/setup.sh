@@ -47,7 +47,7 @@ docker compose -f /opt/lotuz/crm/supabase/docker-compose.yml config --quiet
 docker compose -f /opt/lotuz/agentsdr/docker-compose.yml config --quiet
 docker compose -f /opt/lotuz/openwa/docker-compose.yml config --quiet
 install -d -m 0755 /root/.hermes/skills/lotuz
-for skill in crm sdr wa mkt; do
+for skill in crm sdr wa mkt reports; do
   install -d -m 0755 "/root/.hermes/skills/lotuz/$skill"
   install -m 0644 "$ROOT/skills/lotuz/$skill/SKILL.md" "/root/.hermes/skills/lotuz/$skill/SKILL.md"
 done

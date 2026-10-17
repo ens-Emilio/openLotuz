@@ -1,6 +1,6 @@
 # Deploy do Supabase self-host + Atomic CRM
 
-Veja a arquitetura completa em [`../README.md`](../README.md).
+Veja a arquitetura completa no [site de documentação](index.md).
 
 ## Pré-requisitos
 

@@ -37,6 +37,17 @@ http://127.0.0.1:8644/webhooks/lotuz-wa
 http://127.0.0.1:8644/webhooks/lotuz-mkt
 ```
 
+
+## External prerequisite acceptance
+
+Run `make prereq-check` on the VM. Warnings are expected until the external values exist; failures stop the rollout.
+
+Acceptance criteria:
+
+- Cloudflare Access API returns success for the account and Access policies exist for Kuma, Hermes dashboard, Cronova, Studio, and webhook ingress.
+- `TELEGRAM_BOT_TOKEN` is set only in `/root/.hermes/.env`; a private-chat smoke test succeeds.
+- `BACKUP_AGE_IDENTITY` exists and has an offline copy in a password manager or encrypted removable store.
+- `HEALTHCHECK_URL` and `BACKUP_ALERT_URL` are private checks and receive a success ping after backup plus a failure ping from a forced test failure.
 Use `hermes webhook list` to retrieve route names. Requests require `X-Hub-Signature-256: sha256=<HMAC-SHA256(secret, raw-body)>`. Each route secret is distinct and stored in `/root/.hermes/webhook_subscriptions.json` mode `0600`.
 
 To expose a route, first enable Cloudflare Access, create an allow policy, add the hostname through the Tunnel, and verify invalid signatures still return `401` externally.

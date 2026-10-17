@@ -38,10 +38,14 @@ graph LR
 - [ ] Telegram gateway — requer bot token real, ausente por design
 - [x] Payload gateway base validado; adapters específicos Cronova/AgentSDR dependem dos contratos externos
 
-## Fase 3 — Crescimento
-- [ ] Docs site `mkdocs` + GitHub Pages + diagrama + GIF demo (sem domínio real)
-- [ ] `good first issue` backlog
-- [ ] Marketplace de skills (`lotuz-reports` com sheets)
+## Fase 3 — Crescimento (entregue no repositório)
+- [x] Site MkDocs + GitHub Pages workflow + navegação operacional
+- [x] `GOOD_FIRST_ISSUES.md` com backlog inicial
+- [x] Skill read-only `lotuz-reports` + validação no SDK
+
+Remaining external activation:
+- [ ] Cloudflare Access para rotas públicas protegidas
+- [ ] Telegram token e teste privado do gateway
 
 ---
 

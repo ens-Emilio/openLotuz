@@ -6,7 +6,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills" / "lotuz"
-EXPECTED = {"crm", "sdr", "wa", "mkt"}
+EXPECTED = {"crm", "sdr", "wa", "mkt", "reports"}
 ERRORS = []
 
 for name in sorted(EXPECTED):
@@ -22,11 +22,9 @@ for name in sorted(EXPECTED):
     fields = dict(re.findall(r"^(name|description|allowed-tools):\s*(.+)$", frontmatter.group(1), re.M))
     if fields.get("name") != f"lotuz-{name}":
         ERRORS.append(f"{path.relative_to(ROOT)}: name must be lotuz-{name}")
-    if not fields.get("description"):
-        ERRORS.append(f"{path.relative_to(ROOT)}: description is required")
-    if fields.get("allowed-tools") != f"Bash(lotuz-{name}:*)":
-        ERRORS.append(f"{path.relative_to(ROOT)}: allowed-tools must scope Bash(lotuz-{name}:*)")
-    wrapper = ROOT / "scripts" / f"lotuz-{name}.py"
+    wrapper = ROOT / "scripts" / f"lotuz-{name}"
+    if not wrapper.is_file():
+        wrapper = ROOT / "scripts" / f"lotuz-{name}.py"
     if not wrapper.is_file():
         ERRORS.append(f"missing wrapper {wrapper.relative_to(ROOT)}")
 

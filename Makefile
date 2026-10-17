@@ -1,4 +1,4 @@
-.PHONY: help check lint secrets env-check backup-test up down ps setup skill-check hook-check
+.PHONY: help check lint secrets env-check backup-test up down ps setup skill-check hook-check prereq-check
 
 help:
 	@echo "OpenLotuz"
@@ -18,12 +18,11 @@ up:
 
 down:
 	@sudo lotuz down "$(PROFILE)"
-
-ps:
-	@sudo lotuz ps "$(PROFILE)"
-
 setup:
 	@sudo scripts/setup.sh --yes
+
+prereq-check:
+	@python3 scripts/check-prereqs.py
 
 skill-check:
 	@python3 scripts/skill-check.py

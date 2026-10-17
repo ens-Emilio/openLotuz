@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "${1:-status}" in
+  status)
+    if command -v lotuz >/dev/null 2>&1; then
+      lotuz ps all
+    else
+      printf '{"services":["crm","flow","sdr","wa","mkt"],"mode":"read-only","note":"install scripts/lotuz first"}\n'
+    fi
+    ;;
+  *)
+    echo "uso: lotuz-reports status" >&2
+    exit 2
+    ;;
+esac
