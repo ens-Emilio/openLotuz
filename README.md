@@ -90,6 +90,17 @@ Credenciais e chaves ficam fora do repo em `/opt/lotuz/.backup.env` e `/root/.co
 
 > Copie `.env.example` → `.env` e `cloudflared.config.example.yaml` → `/etc/cloudflared/config.yaml`, substituindo `SEU_*` e `example.com`. Antes de habilitar Kuma no Tunnel, configure Cloudflare Access.
 
+## Operação da plataforma
+
+Veja [docs/platform.md](docs/platform.md) para o orquestrador host, setup idempotente, skills e webhooks HMAC.
+
+```bash
+sudo scripts/setup.sh --yes
+lotuz ps all
+```
+
+Os webhooks Hermes ficam em loopback (`127.0.0.1:8644`) até Cloudflare Access ser habilitado. Telegram e rotas públicas de administração exigem tokens/políticas que não são versionados.
+
 ## Licença
 Apache-2.0 — ver [LICENSE](LICENSE). Cada componente mantém a própria licença (MIT/OSS). Ao contribuir você concorda que sua contribuição será licenciada sob Apache-2.0.
 

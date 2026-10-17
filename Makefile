@@ -1,13 +1,37 @@
-.PHONY: help check lint secrets env-check backup-test
+.PHONY: help check lint secrets env-check backup-test up down ps setup skill-check hook-check
 
 help:
 	@echo "OpenLotuz"
-	@echo "  make check      - env validation + gitleaks (if installed) + custom block"
-	@echo "  make secrets    - gitleaks detect (requires gitleaks)"
-	@echo "  make env-check  - validate .env / placeholders"
-	@echo "  make lint       - shellcheck (optional)"
+	@echo "  make check       - env validation + gitleaks (if installed) + custom block"
+	@echo "  make backup-test - syntax check backup and restore scripts"
+	@echo "  make up PROFILE=all      - start selected existing stacks on host"
+	@echo "  make down PROFILE=all    - stop selected existing stacks"
+	@echo "  make ps PROFILE=all      - show status"
+	@echo "  make setup               - validate/install host CLI and scripts (sudo)"
+	@echo "  make skill-check         - validate Hermes skill frontmatter + wrappers"
+	@echo "  make hook-check          - syntax check signed webhook helper"
 
-check: env-check secrets
+PROFILE ?= all
+
+up:
+	@sudo lotuz up "$(PROFILE)"
+
+down:
+	@sudo lotuz down "$(PROFILE)"
+
+ps:
+	@sudo lotuz ps "$(PROFILE)"
+
+setup:
+	@sudo scripts/setup.sh --yes
+
+skill-check:
+	@python3 scripts/skill-check.py
+
+hook-check:
+	@bash -n scripts/lotuz-hook
+
+check: env-check secrets skill-check hook-check backup-test
 
 env-check:
 	@python3 scripts/check-env.py
