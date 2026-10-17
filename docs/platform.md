@@ -1,7 +1,5 @@
 # Platform Operations
 
-## Host orchestration
-
 The stacks remain independent because they own different Compose projects, networks, volumes, and upgrade lifecycles. `scripts/lotuz` is the single host interface:
 
 ```bash
@@ -13,7 +11,8 @@ lotuz logs sdr
 lotuz down mkt
 ```
 
-`setup.sh` validates the existing Compose files, installs `lotuz`, `lotuz-hook`, backup scripts, and the four Hermes skills. It does not recreate containers unless `--start` is explicitly passed.
+`setup.sh` validates the existing Compose files, installs `lotuz`, `lotuz-hook`, backup scripts, four Hermes skills, and a loopback-only Hermes dashboard unit. It does not recreate containers unless `--start` is explicitly passed.
+
 
 ## Hermes webhook gateway
 

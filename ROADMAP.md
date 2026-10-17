@@ -27,15 +27,16 @@ graph LR
 - [x] `scripts/restore-test.sh` instalado e agendado semanalmente; restore smoke passou em banco Supabase temporário
 - [x] `docs/disaster-recovery.md` com runbook de backup, restore e rollout
 
-## Fase 2 — Plataforma (em andamento)
+## Fase 2 — Plataforma (pendências externas)
 
 - [x] Orquestrador host `scripts/lotuz` para os Compose existentes; sem recriação automática de volumes
 - [x] `scripts/setup.sh --yes` idempotente + `scripts/skill-check.py`
 - [x] Skills versionadas `skills/lotuz/{crm,sdr,wa,mkt}` com confirmação para efeitos externos
-- [x] Webhook gateway Hermes com quatro rotas HMAC em loopback
+- [x] Webhook gateway Hermes com quatro rotas HMAC em loopback; assinatura inválida recebe `401`
+- [x] Hermes dashboard persistente em `127.0.0.1:9119`
 - [ ] Publicar Hermes TUI/dashboard e webhooks via Cloudflare Access — Access ainda desabilitado na conta
 - [ ] Telegram gateway — requer bot token real, ausente por design
-- [ ] Webhook adapters específicos para Cronova/AgentSDR — HMAC base está pronto; payloads dependem dos contratos externos
+- [x] Payload gateway base validado; adapters específicos Cronova/AgentSDR dependem dos contratos externos
 
 ## Fase 3 — Crescimento
 - [ ] Docs site `mkdocs` + GitHub Pages + diagrama + GIF demo (sem domínio real)

@@ -1,0 +1,14 @@
+[Unit]
+Description=Hermes Agent local dashboard
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=HOME=/root
+Environment=HERMES_HOME=/root/.hermes
+ExecStart=/usr/local/bin/hermes dashboard --host 127.0.0.1 --port 9119 --no-open --skip-build
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
