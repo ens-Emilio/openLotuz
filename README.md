@@ -70,7 +70,7 @@ Veja `docs/` para os guias passo a passo:
 /opt/lotuz/backup-r2.sh
 ```
 
-Credenciais em `/opt/lotuz/.backup.env` (fora do repo).
+Credenciais em `/opt/lotuz/.backup.env` (fora do repo). Veja `.env.example` e `cloudflared.config.example.yaml` como templates.
 
 ## Variáveis de ambiente (não versionadas)
 
@@ -80,10 +80,12 @@ Credenciais em `/opt/lotuz/.backup.env` (fora do repo).
 | `/root/.hermes/.env` | `HERMES_KODEO_KEY`, `DISCORD_BOT_TOKEN`, `DISCORD_ALLOW_ALL_USERS`, `ANON_KEY` |
 | `/opt/lotuz/.backup.env` | `R2_BUCKET` |
 | `/etc/cronova/cronova.yaml` | `secure_cookie: true`, credenciais admin |
+| `/etc/cloudflared/config.yaml` | `tunnel`, `credentials-file`, `ingress` (ver `cloudflared.config.example.yaml`) |
+
+> Copie `.env.example` → `.env` e `cloudflared.config.example.yaml` → `/etc/cloudflared/config.yaml`, substituindo `SEU_*` e `example.com`.
 
 ## Licença
-
-Apache-2.0. Cada componente mantém a própria licença (MIT/OSS).
+Apache-2.0 — ver [LICENSE](LICENSE). Cada componente mantém a própria licença (MIT/OSS). Ao contribuir você concorda que sua contribuição será licenciada sob Apache-2.0.
 
 ## Contribuição
 

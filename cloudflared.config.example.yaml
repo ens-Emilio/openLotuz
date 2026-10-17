@@ -1,0 +1,15 @@
+# /etc/cloudflared/config.yaml — copie e substitua SEU_* (não commite o real)
+tunnel: SEU_TUNNEL_ID
+credentials-file: /etc/cloudflared/SEU_TUNNEL_ID.json
+ingress:
+  - hostname: flow.example.com
+    service: http://localhost:8090
+  - hostname: sdr.example.com
+    service: http://localhost:3001
+  - hostname: wa.example.com
+    service: http://localhost:3002
+  - hostname: mkt.example.com
+    service: http://localhost:3003
+  - hostname: crm.example.com
+    service: http://localhost:3000
+  - service: http_status:404
