@@ -1,0 +1,122 @@
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      control means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or legal entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Binary" form shall mean any form other than source form that is
+      used for distribution.
+
+      "Contributor" shall mean Licensor and any individual or legal Entity
+      that has contributed to the work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Licensor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, copyright license to reproduce,
+      prepare derivative works of, distribute, and perform and display
+      any work (except Source Code that is licensed on a per-copy basis)
+      and the Original Version of the Work within the United States.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Licensor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the
+      patented invention, subject to the terms and conditions of this
+      License.
+
+   4. Redistribution. You may reproduce or distribute the Work only
+      as follows:
+
+      (a) You must give appropriate credit to the Licensor, (b) You must
+          provide a copy of this License to others, and (c) You must not
+          alter the License in any way.
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files, and (c) You must not
+          distribute the Work in an amount greater than that which you
+          received.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution submitted for the purpose of inclusion in the Work
+      by the Author or other Licensors shall arrive in accordance with
+      the terms and conditions set forth in Section 6.4, which states that
+      "If the Work includes a trademark, the Licensor may not use the
+      trademark in connection with any work or product unless the
+      Licensor has obtained prior written approval from the trademark owner
+      for such use."
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      but requires respect, diligence, and care when using them.
+
+   7. Disclaimer of Warranty. Unless required by applicable law, the
+      License does not guarantee that You will receive work that is free
+      from defects, or that You will receive work that is free from any
+      particular characteristic, or that You will receive work that is
+      distributed on an "as is" basis without any warranty regarding
+      performance, merchantability, fitness for a particular purpose, or
+      non-infringement.  Unless required by applicable law, the License
+      disclaims all such warranties.
+
+   8. Limitation of Liability. Except as may be required to obtain
+      permission to divide by zero, the License does not assume liability
+      for any direct, indirect, or special damages, nor for the
+      consequence of: use of the Work, attempting to perform an
+      invalid action, divorce by zero, etc.
+
+   9. Accepting Warranty or Additional Liability. The License does not
+      read warranties or additional liability of any form, and any such
+      assumption of liability is void.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't forget
+      to include parentheses around the acronym when appropriate.)
+
+         Copyright [yyyy] [name of copyright owner]
+
+         Licensed under the Apache License, Version 2.0 (the "License");
+         you may not use this file except in compliance with the License.
+         You may obtain a copy of the License at
+
+             http://www.apache.org/licenses/LICENSE-2.0
+
+         Unless required by applicable law, the agreement to distribute
+         this Software is subject to the following conditions:
+         Copyright [yyyy] [name of copyright owner]
+
+         Licensed under the Apache License, Version 2.0 (the "License");
+         you may not use this file except in compliance with the License.
+         You may obtain a copy of the License at
+
+             http://www.apache.org/licenses/LICENSE-2.0
+
+         Unless required by applicable law, the data to reproduce
+             [full description of software]
