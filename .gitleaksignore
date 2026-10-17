@@ -1,0 +1,3 @@
+# False positives — keep minimal
+# Example: allow example.com placeholders
+# example.com is intentional, not a secret

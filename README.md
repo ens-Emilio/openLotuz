@@ -91,6 +91,14 @@ Apache-2.0 — ver [LICENSE](LICENSE). Cada componente mantém a própria licen�
 
 Issues e PRs bem-vindos. Para adicionar skills ao Hermes, crie pasta em `skills/lotuz/<nome>/` com `SKILL.md` + script executável.
 
+Veja [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) e [ROADMAP.md](ROADMAP.md).
+
+Check local antes de commitar:
+
+```bash
+make check  # env-check + gitleaks + custom block
+```
+
 ---
 
 **Status atual**: todos os containers healthy, serviços públicos via Tunnel, backup R2 testado, Hermes + Discord ativo.

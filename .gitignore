@@ -167,3 +167,6 @@ scratch/
 # Allow CI workflow despite *secret* pattern above
 !.github/workflows/secrets-check.yml
 !scripts/rotate-vm-secrets.sh
+!SECURITY.md
+!CONTRIBUTING.md
+!ROADMAP.md
